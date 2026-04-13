@@ -1,0 +1,85 @@
+<div class="form-wrapper">
+    <div class="header-row m-b-10" fxLayout="row" fxLayoutAlign="space-between center">
+        <h1 class="form-title">Заполните поля</h1>
+        <h4 class="header-hint">ну пожалуйста</h4>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-card>
+            <mat-card-content>
+                <h3 class="section-title" fxLayout="row" fxLayoutAlign="center center">Основное</h3>
+
+                <div class="form-row" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="field-hint">Имя</div>
+                    <mat-form-field appearance="outline" class="form-field">
+                        <input matInput formControlName="name" placeholder="по паспорту">
+                        @if(form.get('name')?.hasError('required') && form.get('name')?.touched) {
+                        <mat-error>
+                            Имя обязательно
+                        </mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div class="form-row" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="field-hint">Цвет вашего настроения</div>
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-select formControlName="moodColor">
+                            <mat-select-trigger fxLayout="row" fxLayoutAlign="start center">
+                                @if(form.get('moodColor')?.value) {
+                                <mat-icon class="choosed_icon" [style.color]="getSelectedColorIcon()">
+                                    color_lens
+                                </mat-icon>
+                                }
+                                <span>{{ getSelectedColorName() || 'Выберите цвет' }}</span>
+                            </mat-select-trigger>
+
+                            <mat-option *ngFor="let color of moodColors" [value]="color.value">
+                                <mat-icon [style.color]="color.iconColor">color_lens</mat-icon>
+                                <span class="option-text">{{ color.viewValue }}</span>
+                            </mat-option>
+                        </mat-select>
+                        @if(form.get('moodColor')?.hasError('required') && form.get('moodColor')?.touched) {
+                        <mat-error>
+                            Выберите цвет
+                        </mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <h3 class="section-title" fxLayout="row" fxLayoutAlign="center center">Дополнительное</h3>
+
+                <div class="form-row" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="field-hint">Комментарий</div>
+                    <mat-form-field appearance="outline" class="form-field">
+                        <textarea matInput formControlName="comment" rows="4"
+                            placeholder="Напишите хоть что-нибудь. Если хотите, конечно."></textarea>
+                    </mat-form-field>
+                </div>
+
+                <div class="checkbox-group" fxLayout="column" fxLayoutAlign="center center">
+                    <mat-checkbox formControlName="radioOption" class="example-checkbox">
+                        Ну а тут просто полежит радиобатон
+                    </mat-checkbox>
+
+                    <mat-checkbox formControlName="agreement" class="example-checkbox" color="primary">
+                        Соглашаюсь на всё, что бы вы не придумали и осознаю, что это может означать
+                        <a href="https://www.officemag.ru/" target="_blank" class="agreement-link">что угодно</a>
+                    </mat-checkbox>
+                    @if(form.get('agreement')?.hasError('requiredTrue') && form.get('agreement')?.touched) {
+                    <mat-error class="error-text m-b-10">
+                        Необходимо согласиться
+                    </mat-error>
+                    }
+                </div>
+
+            </mat-card-content>
+
+            <mat-card-actions fxLayoutAlign="center">
+                <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+                    Отправить все мои данные
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>

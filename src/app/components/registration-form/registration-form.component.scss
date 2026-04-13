@@ -1,0 +1,24 @@
+.field-hint {
+    width: 180px;
+    min-width: 180px;
+}
+
+@media (max-width: 600px) {
+    .field-hint {
+        width: min-content;
+        min-width: unset;
+        margin-right: 10px;
+    }
+}
+
+.form-field {
+    flex: 1;
+}
+
+.example-checkbox {
+    max-width: 300px;
+}
+
+.choosed_icon {
+    margin-right: 16px;
+}
