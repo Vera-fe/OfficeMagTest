@@ -1,0 +1,63 @@
+<div class="scheme-wrapper">
+    <mat-card style="width: 102%;">
+        <mat-card-header>
+            <mat-card-title>Схема</mat-card-title>
+            <mat-card-subtitle>
+                Масоны самсона
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="scheme">
+                <svg class="connections">
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6"
+                            orient="auto">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="gray" />
+                        </marker>
+                    </defs>
+
+                    <path d="M 670 40 L 235 40" marker-end="url(#arrow)" stroke="gray" stroke-width="1" fill="none" />
+
+                    <path d="M 670 100 L 650 100 L 650 40" stroke="gray" stroke-width="1" fill="none" />
+
+                    <path d="M 670 160 L 305 160" marker-end="url(#arrow)" stroke="gray" stroke-width="1" fill="none" />
+
+                    <path d="M 670 280 L 505 280" marker-end="url(#arrow)" stroke="gray" stroke-width="1" fill="none" />
+
+                    <path d="M 670 340 L 650 340 L 650 280" stroke="gray" stroke-width="1" fill="none" />
+
+                    <path d="M 670 400 L 650 400 L 650 340" stroke="gray" stroke-width="1" fill="none" />
+
+                    <path d="M 875 400 L 895 400 L 895 370 L 895 280 L 875 280" marker-end="url(#arrow)" stroke="gray"
+                        stroke-width="1" fill="none" />
+
+                    <path d="M 300 460 L 200 460 L 200 180" marker-end="url(#arrow)" stroke="gray" stroke-width="1"
+                        fill="none" />
+
+                    <path d="M 300 280 L 200 280" stroke="gray" stroke-width="1" fill="none" />
+
+                    <path d="M 300 220 L 200 220" stroke="gray" stroke-width="1" fill="none" />
+
+                    <path d="M 100 580 L 80 580 L 80 60" marker-end="url(#arrow)" stroke="gray" stroke-width="1"
+                        fill="none" />
+
+                    <path d="M 100 520 L 80 520" stroke="gray" stroke-width="1" fill="none" />
+
+                    <path d="M 100 160 L 80 160" stroke="gray" stroke-width="1" fill="none" />
+                </svg>
+
+                <div *ngFor="let node of nodes" class="node" [style.left.px]="node.x" [style.top.px]="node.y">
+                    {{ node.name }}
+                </div>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions fxLayoutAlign="center">
+            <button mat-button routerLink="/">
+                <mat-icon>arrow_back</mat-icon>
+                Вернуться на страницу регистрации
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

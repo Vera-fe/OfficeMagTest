@@ -1,0 +1,38 @@
+.scheme-wrapper {
+    width: fit-content;
+    padding: 20px;
+}
+
+.scheme {
+    position: relative;
+    min-width: 900px;
+    height: 650px;
+    background: #2d333b;
+    border-radius: 8px;
+    overflow: auto;
+    margin: 20px 0;
+}
+
+.node {
+    position: absolute;
+    min-width: 180px;
+    padding: 10px 12px;
+    background: white;
+    border-radius: 6px;
+    text-align: center;
+    word-break: break-word;
+}
+
+.connections {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+//до конца не адаптировала схему под мобилку, некоторые связи могут пропасть при маленьком разрешении
+@media (max-width: 960px) {
+    .scheme {
+        min-width: unset;
+    }
+}
