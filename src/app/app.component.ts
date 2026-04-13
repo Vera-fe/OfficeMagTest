@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {RegistrationFormComponent} from './components/registration-form/registration-form.component';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RegistrationFormComponent],
+    imports: [RouterOutlet],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, inject, OnInit} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms'
 import {MatInputModule} from '@angular/material/input'
@@ -9,6 +9,7 @@ import {MatCardModule} from '@angular/material/card'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatIconModule} from '@angular/material/icon'
 import {FlexLayoutModule} from '@ngbracket/ngx-layout'
+import {Router} from '@angular/router'
 
 interface MoodColor {
     value: string
@@ -35,6 +36,7 @@ interface MoodColor {
     styleUrls: ['./registration-form.component.scss']
 })
 export class RegistrationFormComponent implements OnInit {
+    private router = inject(Router)
     form!: FormGroup
 
     moodColors: MoodColor[] = [
@@ -64,7 +66,7 @@ export class RegistrationFormComponent implements OnInit {
     onSubmit(): void {
         if (this.form.valid) {
             console.log('Данные формы:', this.form.value)
-            alert('Форма успешно отправлена!')
+            this.router.navigate(['/buttons'])
         } else {
             this.markFormGroupTouched(this.form)
             alert('Заполните все обязательные поля!')

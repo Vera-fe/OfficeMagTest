@@ -1,0 +1,102 @@
+<div class="buttons-page">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Кнопки</mat-card-title>
+        </mat-card-header>
+
+        <mat-divider></mat-divider>
+
+        <mat-card-content>
+            <mat-card-subtitle class="section-title">Основные варианты</mat-card-subtitle>
+            <div class="buttons-grid" fxLayout="row wrap" fxLayoutGap="16px grid">
+                @for (btn of buttonVariants; track $index) {
+                <button class="btn" [class.btn--primary]="btn.variant === 'primary'"
+                    [class.btn--secondary]="btn.variant === 'secondary'"
+                    [class.btn--outline]="btn.variant === 'outline'" [class.btn--success]="btn.variant === 'success'"
+                    [class.btn--warning]="btn.variant === 'warning'" [class.btn--danger]="btn.variant === 'danger'"
+                    [disabled]="btn.disabled">
+                    <mat-icon>{{ btn.icon }}</mat-icon>
+                    <span>{{ btn.label }}</span>
+                </button>
+                }
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <mat-card-subtitle class="section-title">Кнопки действий</mat-card-subtitle>
+            <div class="buttons-grid" fxLayout="row wrap" fxLayoutGap="16px grid">
+                @for (btn of actionButtons; track $index) {
+                <button class="btn" [class.btn--action]="btn.variant === 'action'"
+                    [class.btn--danger]="btn.variant === 'danger'">
+                    <mat-icon>{{ btn.icon }}</mat-icon>
+                    <span>{{ btn.label }}</span>
+                </button>
+                }
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <mat-card-subtitle class="section-title">Состояния кнопки</mat-card-subtitle>
+            <div class="states-demo">
+                <div class="state-item">
+                    <p>Обычная</p>
+                    <button class="btn btn--primary">
+                        <mat-icon>visibility</mat-icon>
+                        <span>Просмотреть</span>
+                    </button>
+                </div>
+                <div class="state-item">
+                    <p>При наведении (hover)</p>
+                    <button class="btn btn--primary hover-demo">
+                        <mat-icon>visibility</mat-icon>
+                        <span>Просмотреть</span>
+                    </button>
+                </div>
+                <div class="state-item">
+                    <p>Нажатая (active)</p>
+                    <button class="btn btn--primary active-demo">
+                        <mat-icon>visibility</mat-icon>
+                        <span>Просмотреть</span>
+                    </button>
+                </div>
+                <div class="state-item">
+                    <p>Заблокированная</p>
+                    <button class="btn btn--primary" disabled>
+                        <mat-icon>visibility</mat-icon>
+                        <span>Просмотреть</span>
+                    </button>
+                </div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <mat-card-subtitle class="section-title">Инструкция к добавлению нового состояния/вида
+                кнопки</mat-card-subtitle>
+            <p class="demo-note">Нужно добавить класс <code>.btn--new-variant</code> в buttons-page.component.scss:</p>
+            <pre class="code-example"><code>// Добавить новый вариант
+.btn--purple {{ '{' }}
+    background: #9c27b0;
+    color: white;
+    border: none;
+
+    &amp;:hover {{ '{' }}
+        background: #7b1fa2;
+    {{ '}' }}
+{{ '}' }}</code></pre>
+
+            <div class="demo-new-variant">
+                <button class="btn btn--purple">
+                    <mat-icon>auto_awesome</mat-icon>
+                    <span>Новый вариант</span>
+                </button>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions fxLayoutAlign="center">
+            <button mat-button routerLink="/">
+                <mat-icon>arrow_back</mat-icon>
+                Вернуться к форме
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
