@@ -99,22 +99,18 @@
 }
 
 // 3D Чекбокс
-$checkbox-off: #c83943;
-$checkbox-on: #75cb43;
-$ball-off: #c83943;
-$ball-on: #75cb43;
-
 .checkbox-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    justify-content: center;
+    margin: 40px 0;
 }
 
-// Внешний контейнер для 3D-эффекта
+// Внешний контейнер
 .beautiful-checkbox {
+    position: relative;
+    display: inline-block;
+    width: 140px;
+    height: 70px;
 
     &::before {
         content: '';
@@ -125,26 +121,19 @@ $ball-on: #75cb43;
         left: -15px;
         top: -13px;
         border-radius: 45px;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3),
+
+        box-shadow:
+            0 10px 15px rgba(0, 0, 0, 0.3),
             0 2px 5px rgba(0, 0, 0, 0.2),
             inset 0 2px 4px rgba(255, 255, 255, 0.6),
             inset 0 -4px 6px rgba(0, 0, 0, 0.3);
     }
 
-    position: relative;
-    display: inline-block;
-    width: 140px;
-    height: 70px;
-    z-index: 20;
-
     input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-        position: absolute;
+        display: none;
 
         &:checked+.checkbox-track {
-            background: $checkbox-on;
+            background: #75cb43;
 
             box-shadow:
                 3px 3px 1px rgba(255, 255, 255, 0.3),
@@ -155,27 +144,17 @@ $ball-on: #75cb43;
                 inset 0px -5px 10px rgba(95, 91, 91, 0.6);
 
             .checkbox-ball {
-                // Перекатываем шарик вправо
-                transform: translateX(70px);
-
-                // Шарик полностью зелёный
-                background: radial-gradient(circle at 35% 35%,
-                        color.adjust($ball-on, $lightness: 20%),
-                        $ball-on,
-                        color.adjust($ball-on, $lightness: -20%));
+                transform: translateX(70px) rotate(180deg);
             }
         }
     }
 
     .checkbox-track {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         border-radius: 70px;
+        background: #c83943;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.9, 1);
-        background: $checkbox-off;
 
         box-shadow:
             3px 3px 1px rgba(255, 255, 255, 0.3),
@@ -184,97 +163,67 @@ $ball-on: #75cb43;
             -2px -3px 3px rgba(0, 0, 0, 0.2),
             inset 0px 5px 10px rgba(95, 91, 91, 0.6),
             inset 0px -5px 10px rgba(95, 91, 91, 0.6);
+    }
 
-        .checkbox-ball {
+    .checkbox-ball {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        transition: transform 0.7s cubic-bezier(0.34, 1.2, 0.9, 1);
+
+        box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.4),
+            inset -3px -3px 6px rgba(0, 0, 0, 0.3),
+            inset 3px 3px 6px rgba(255, 255, 255, 0.3);
+
+        &::after {
+            content: "";
             position: absolute;
-            // top: 6px;
-            // left: 6px;
-            // width: 58px;
-            // height: 58px;
-            top: 0px;
-            left: 0px;
-            width: 70px;
-            height: 70px;
+            inset: 0;
             border-radius: 50%;
-            transition: all 0.7s cubic-bezier(0.34, 1.2, 0.9, 1);
 
             background: radial-gradient(circle at 35% 35%,
-                    color.adjust($ball-off, $lightness: 20%),
-                    $ball-off,
-                    color.adjust($ball-off, $lightness: -20%));
+                    color.adjust(#75cb43, $lightness: 20%),
+                    #75cb43,
+                    color.adjust(#75cb43, $lightness: -20%));
 
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4),
-                inset -3px -3px 6px rgba(0, 0, 0, 0.3),
-                inset 3px 3px 6px rgba(255, 255, 255, 0.3);
+            mask: conic-gradient(from 90deg,
+                    black 0deg,
+                    black var(--angle, 0deg),
+                    transparent var(--angle, 0deg));
 
-            &::before {
-                content: "";
-                position: absolute;
-                top: 9px;
-                left: 9px;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                background: rgba(226, 225, 225, 0.55);
-                filter: blur(5px);
-                transition: left 0.3s ease, right 0.3s ease;
-                z-index: 2;
-            }
+            -webkit-mask: conic-gradient(from 90deg,
+                    black 0deg,
+                    black var(--angle, 0deg),
+                    transparent var(--angle, 0deg));
+
+            transition: --angle 0.7s cubic-bezier(0.34, 1.2, 0.9, 1);
         }
-    }
-}
-
-.checkbox-label {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #666;
-    font-weight: 500;
-}
-
-@media (max-width: 600px) {
-    .beautiful-checkbox {
 
         &::before {
             content: "";
             position: absolute;
-            height: 80px;
-            width: 130px;
-            background: rgb(230, 230, 230);
-            left: -15px;
-            top: -13px;
-            border-radius: 40px;
-        }
-
-        width: 100px;
-        height: 50px;
-
-        input:checked+.checkbox-track .checkbox-ball {
-            transform: translateX(50px);
-        }
-
-        .checkbox-track .checkbox-ball {
-            width: 40px;
-            height: 40px;
-            top: 5px;
-            left: 5px;
-
-            &::before {
-                top: 8px;
-                left: 8px;
-                width: 10px;
-                height: 10px;
-            }
+            top: 9px;
+            left: 9px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(226, 225, 225, 0.55);
+            filter: blur(5px);
+            z-index: 2;
         }
     }
 
-    .states-demo {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+    input:checked+.checkbox-track .checkbox-ball::after {
+        --angle: 360deg;
     }
 
-    .beautiful-btn {
-        padding: 10px 24px;
-        font-size: 16px;
+    input:not(:checked)+.checkbox-track .checkbox-ball::after {
+        --angle: 0deg;
     }
 }
