@@ -47,16 +47,22 @@
                     <path d="M 100 160 L 80 160" stroke="gray" stroke-width="1" fill="none" />
                 </svg>
 
-                <div *ngFor="let node of nodes" class="node" [style.left.px]="node.x" [style.top.px]="node.y">
+                @for (node of nodes; track node.id) {
+                <div class="node" [style.left.px]="node.x" [style.top.px]="node.y">
                     {{ node.name }}
                 </div>
+                }
             </div>
         </mat-card-content>
 
-        <mat-card-actions fxLayoutAlign="center">
+        <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
             <button mat-button routerLink="/">
                 <mat-icon>arrow_back</mat-icon>
                 Вернуться на страницу регистрации
+            </button>
+            <button mat-raised-button color="primary" routerLink="/slider">
+                <mat-icon>shopping_cart</mat-icon>
+                Витрина
             </button>
         </mat-card-actions>
     </mat-card>

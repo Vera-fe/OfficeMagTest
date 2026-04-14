@@ -34,10 +34,12 @@
                                 <span>{{ getSelectedColorName() || 'Выберите цвет' }}</span>
                             </mat-select-trigger>
 
-                            <mat-option *ngFor="let color of moodColors" [value]="color.value">
+                            @for (color of moodColors; track color.value) {
+                            <mat-option [value]="color.value">
                                 <mat-icon [style.color]="color.iconColor">color_lens</mat-icon>
                                 <span class="option-text">{{ color.viewValue }}</span>
                             </mat-option>
+                            }
                         </mat-select>
                         @if(form.get('moodColor')?.hasError('required') && form.get('moodColor')?.touched) {
                         <mat-error>

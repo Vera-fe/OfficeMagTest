@@ -54,7 +54,6 @@ export class RegistrationFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            page: ['ну пожалуйста', Validators.required],
             name: ['', Validators.required],
             moodColor: ['blue', Validators.required],
             comment: [''],
