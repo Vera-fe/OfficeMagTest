@@ -1,0 +1,47 @@
+<div class="beautiful-wrapper">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Красота</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="button-section">
+                <mat-card-subtitle>Кнопка</mat-card-subtitle>
+                <div class="button-demo">
+                    <button class="beautiful-btn" id="liveBtn">Кнопка</button>
+                </div>
+
+                <div class="states-demo">
+                    <div class="state-item">
+                        <mat-card-subtitle>Состояние Hover</mat-card-subtitle>
+                        <button class="beautiful-btn hover-demo">Кнопка</button>
+                    </div>
+                    <div class="state-item">
+                        <mat-card-subtitle>Состояние Active (нажата)</mat-card-subtitle>
+                        <button class="beautiful-btn active-demo">Кнопка</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkbox-section">
+                <mat-card-subtitle>3D Чекбокс (переключатель)</mat-card-subtitle>
+                <div class="checkbox-container">
+                    <label class="beautiful-checkbox">
+                        <input type="checkbox" [(ngModel)]="isChecked">
+                        <span class="checkbox-track">
+                            <span class="checkbox-ball">
+                            </span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions fxLayoutAlign="center">
+            <button mat-button routerLink="/">
+                <mat-icon>arrow_back</mat-icon>
+                Вернуться на страницу регистрации
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
