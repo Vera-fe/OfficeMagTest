@@ -187,10 +187,14 @@ $ball-on: #75cb43;
 
         .checkbox-ball {
             position: absolute;
-            top: 6px;
-            left: 6px;
-            width: 58px;
-            height: 58px;
+            // top: 6px;
+            // left: 6px;
+            // width: 58px;
+            // height: 58px;
+            top: 0px;
+            left: 0px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             transition: all 0.7s cubic-bezier(0.34, 1.2, 0.9, 1);
 
@@ -215,18 +219,6 @@ $ball-on: #75cb43;
                 filter: blur(5px);
                 transition: left 0.3s ease, right 0.3s ease;
                 z-index: 2;
-            }
-
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: 12px;
-                right: 14px;
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background: rgba(0, 0, 0, 0.15);
-                filter: blur(1px);
             }
         }
     }
